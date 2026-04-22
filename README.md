@@ -76,6 +76,22 @@ Update:   v = (x* − x) / Δt
 
 This approach guarantees stability at any timestep by operating directly on positions rather than forces.
 
+### Rope Simulation
+
+| | |
+|---|---|
+| ![Rope curving under gravity](images/pbd-simulations/rope_screenshot.png) | ![Rope in motion](images/pbd-simulations/rope_frame1.png) |
+
+*Left: Rope under gravity with distance constraints. Right: Rope mid-swing dragged by mouse.*
+
+### Particle Smoke
+
+| | | |
+|---|---|---|
+| ![Smoke rising](images/pbd-simulations/particle_smoke1.png) | ![Two smoke columns](images/pbd-simulations/particle_smoke2.png) | ![Dense smoke column](images/pbd-simulations/particle_smoke3.png) |
+
+*Particle smoke driven by buoyancy, turbulence, and PBD density constraints. Parameters adjustable at runtime.*
+
 A demo recording is included: `Project /Project Recording.mov`
 
 ---
@@ -88,6 +104,24 @@ A demo recording is included: `Project /Project Recording.mov`
 > Müller, Kim, and Chentanez (2012)
 
 Blog write-up: [Fast Simulation of Inextensible Hair and Fur – Paper Breakdown](https://miguelgarcia3.wordpress.com/2025/11/18/fast-simulation-of-inextensible-hair-and-fur-paper-breakdown/)
+
+### Paper Results
+
+![Hair simulation results — straight, wavy, and curly at 25–47k strands](images/hair-fur/hair_results_fig1.png)
+
+*Figure 1: Every hair strand simulated in real time. Left to right: 47k hairs at 25 FPS, long hair at 1.9M particles at 8 FPS, curly hair with visualization post-processing.*
+
+| Curly Hair Render | FTL vs PBD vs Euler |
+|---|---|
+| ![Curly hair 3D render](images/hair-fur/curly_hair_render.png) | ![Method comparison — FTL (blue), PBD (green), Euler (red)](images/hair-fur/ftl_pbd_euler_comparison.png) |
+
+*Left: Curly hair rendered in real time using the paper's method. Right (Figure 6): FTL (blue), PBD (green), and symplectic Euler (red) compared under the same per-frame budget.*
+
+| Algorithm Diagrams | Fur with Repulsion |
+|---|---|
+| ![FTL correction and curly hair generation diagrams](images/hair-fur/ftl_algorithm_diagrams.png) | ![Fur hair-character repulsion](images/hair-fur/fur_repulsion_fig7.png) |
+
+*Left: FTL mass-correction steps and curly hair vertex generation. Right (Figure 7): Fur simulation — hair-character repulsion prevents clipping without disturbing artifacts.*
 
 ### Paper Summary
 
@@ -123,6 +157,15 @@ Files included:
 **`Final project /`** — A hybrid Eulerian/Lagrangian smoke simulator combining Stable Fluids and PBD.
 
 **[Full write-up →](Final%20project%20/smoke_simulation_summary.md)**
+
+### Simulation Frames
+
+| | | |
+|---|---|---|
+| ![Smoke rising — early](images/final-smoke/smoke1.png) | ![Smoke column growing](images/final-smoke/smoke2.png) | ![Two smoke plumes](images/final-smoke/smoke3.png) |
+| ![Smoke spreading](images/final-smoke/smoke4.png) | ![Full smoke simulation](images/final-smoke/smoke5.png) | |
+
+*Frames captured from the final simulation. Stable Fluids drives global swirling; PBD particles add weight and controlled drift.*
 
 ### Architecture
 
@@ -165,7 +208,7 @@ python Smoke.py
 |---|---|
 | `collision.py` | Standalone collision detection experiment |
 | `p5js.edits/` | p5.js sketch notes and experiments (`sketches.md`) |
-| `Pictures From Graphics Class/` | Screenshots and screen recordings from simulations |
+| `images/` | Organized screenshots and captured frames from all simulations |
 
 ---
 
